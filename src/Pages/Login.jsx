@@ -49,7 +49,7 @@ const Login = () => {
             formData.append('password', password);
 
             const res = await axios.post(
-                'http://localhost:8000/api/users/login/',
+                '/api/users/login/',
                 formData,
                 {
                     headers: {

@@ -23,7 +23,7 @@ export default function User() {
   const fetchAnswer = async () => {
     try {
       const token = Cookies.get('accessToken')
-      const res = await axios.get(`http://localhost:8000/api/answer/?q=${params.id}`, {
+      const res = await axios.get(`/api/answer/?q=${params.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

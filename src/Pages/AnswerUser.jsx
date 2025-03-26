@@ -23,7 +23,7 @@ export default function AnswerUser() {
 
     const fetchAnsweredUserData = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/users/profile/${params.id}/`,
+            const res = await axios.get(`/api/users/profile/${params.id}/`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ export default function AnswerUser() {
 
     const fetchVideoData = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/question/${params.id}/`,
+            const res = await axios.get(`/api/question/${params.id}/`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

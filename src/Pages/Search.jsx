@@ -18,7 +18,7 @@ const Search = () => {
 
     const getSearch = async () => {
            const res = await axios.get(
-      `http://localhost:8000/api/search/?q=${params.param}`,
+      `/api/search/?q=${params.param}`,
       {
         headers: {
           Authorization: `Bearer ${Cookies.get('accessToken')}`

@@ -13,7 +13,7 @@ function Activate() {
     try {
       setLoading(true)
       let res = await axios.patch(
-        'http://localhost:8000/api/users/activate/',
+        '/api/users/activate/',
         {
           "uid": uid,
           'token': token

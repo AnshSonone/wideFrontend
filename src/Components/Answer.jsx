@@ -19,7 +19,7 @@ const Answer = ({ id, username, avatar, comment, commentDate, userId }) => {
   const deleteAnswer = async () => {
     console.log('clicked')
     const res = await axios.delete(
-      `http://localhost:8000/api/answer/${answerId}`,
+      `/api/answer/${answerId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

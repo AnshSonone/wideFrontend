@@ -15,7 +15,7 @@ function ResetPasword() {
       if (newPassword != confPassword ) return
       setLoading(true)
       let res = await axios.get(
-        'http://localhost:8000/api/users/reset/',
+        '/api/users/reset/',
         {
           'newPassword': newPassword,
           'confPassword': confPassword

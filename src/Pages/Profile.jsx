@@ -21,7 +21,7 @@ export default function Profile() {
         try {
 
             const token = Cookies.get('accessToken')
-            const res = await axios.get(`http://localhost:8000/api/question/${user.data?.id}`,
+            const res = await axios.get(`/api/question/${user.data?.id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

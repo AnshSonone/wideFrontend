@@ -13,7 +13,7 @@ function ForgotPassword(){
         try{
             setLoading(true)
             let res = await axios.post(
-                'http://Localhost:8000/api/users/forgot/',
+                '/api/users/forgot/',
                 {
                     'email': email,
                 },

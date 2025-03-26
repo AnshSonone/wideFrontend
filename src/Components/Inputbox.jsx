@@ -35,7 +35,7 @@ const Inputbox = ({ avatar, username }) => {
   
       if (!(fromData.has('videoDescription') && fromData.has('videoUrl'))) return
   
-      let res = await axios.post('http://localhost:8000/api/videos/',
+      let res = await axios.post('/api/videos/',
         fromData,
         {
           headers: {

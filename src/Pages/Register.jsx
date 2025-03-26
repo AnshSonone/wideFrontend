@@ -45,7 +45,7 @@ const register = () => {
             // formData.append('avatar', avatar)
     
             let res = await axios.post(
-                'http://localhost:8000/api/users/register/',
+                '/api/users/register/',
                 formData
             )
     

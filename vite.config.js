@@ -8,4 +8,14 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  build: {
+    proxy: {
+      '/api': {
+        target: "https://ansh0r.pythonanywhere.com/",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace("/api", ""),
+      }
+    }
+  }
 })

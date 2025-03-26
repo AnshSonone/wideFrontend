@@ -24,7 +24,7 @@ export default function Post({ id, username, avatar, created, videoDescription, 
 
   const deletePost = async () => {
 
-    let res = await axios.delete(`http://localhost:8000/api/videos/${postId}`
+    let res = await axios.delete(`/api/videos/${postId}`
       ,
       {
         headers: {

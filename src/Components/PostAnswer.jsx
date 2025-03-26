@@ -27,7 +27,7 @@ const PostAnswer = ({id}) => {
             formData.append('comment', comment)
     
             let res = await axios.post(
-              "http://localhost:8000/api/answer/",
+              "/api/answer/",
                 formData,
                 {
                   headers: {

@@ -22,7 +22,7 @@ export default function Home() {
       const handlePost = async () => {
         try {
           let res = await axios.get(
-            `http://localhost:8000/api/videos?page=${page}`,
+            `/api/videos?page=${page}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`
