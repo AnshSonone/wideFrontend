@@ -13,12 +13,12 @@ const PostAnswer = ({id}) => {
     const videoId = id
 
     const answerPost = async () => {
+      const token = Cookies.get('accessToken')
+      const decode = jwtDecode(token)
         try {
             if(comment == '' ) return 
             
             setLoading(true)
-            const token = Cookies.get('accessToken')
-            const decode = jwtDecode(token)
 
 
             const formData = new FormData()
@@ -40,6 +40,7 @@ const PostAnswer = ({id}) => {
               setLoading(false)
         } catch (error) {
             console.log(error)
+            setLoading(false)
             
         }
       }

@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MdArrowBackIos } from "react-icons/md";
 import { useNavigate, useParams } from 'react-router-dom';
-// import Loading from '../Components/Loading'; 
+import Loader from '../Components/Loader'; 
 import Cookies from 'js-cookie';
 import UserInfo from '../Components/Userinfo';
 import Post from '../Components/Post';
 import Answer from '../Components/Answer';
-import PostAnswer from '../components/PostAnswer';
+import PostAnswer from '../Components/PostAnswer';
 
 // Fetch user data server-side and render it
 export default function User() {
@@ -40,7 +40,7 @@ export default function User() {
     const fetchUserData = async () => {
       try {
         const token = Cookies.get('accessToken') 
-        const res = await axios.get(`http://localhost:8000/api/video/?video=${params.id}`, {
+        const res = await axios.get(`/api/video/?video=${params.id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -50,6 +50,7 @@ export default function User() {
         setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error);
+        setLoading(false)
       }
     }
 
@@ -59,12 +60,12 @@ export default function User() {
   return (
     <>
       <button className="outline-none text-xl m-4"
-        onClick={() => navigate('/')}>
+        onClick={() => navigate(-1)}>
         <MdArrowBackIos />
       </button>
-      {/* {
+      {
 
-        loading ? <Loading /> : */}
+        loading ? <Loader /> : 
           <div className='flex flex-col my-4 mx-3 '>
             {
               data.length == 0 ?
@@ -120,7 +121,7 @@ export default function User() {
               })
             }
           </div>
-      {/* } */}
+       }
     </>
   );
 }
