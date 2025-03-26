@@ -1,5 +1,5 @@
 {
-    "rewrite": {
+    "rewrites": {
         "source": "/api/:path",
         "destination": "https://anshO.pythonanywhere.com/api/:path*"
     }
