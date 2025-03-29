@@ -8,10 +8,16 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    cors: {
+      // the origin you will be accessing via browser
+      origin: 'https://ansho.pythonanywhere.com',
+    },
+  },
   build: {
     proxy: {
       '/api': {
-        target: "https://ansh0r.pythonanywhere.com/",
+        target: "https://ansho.pythonanywhere.com",
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace("/api", ""),
