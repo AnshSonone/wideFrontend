@@ -17,7 +17,8 @@ export default defineConfig(({mode}) => {
         '/api': {
           target: 'https://anshO.pythonanywhere.com',
           changeOrigin: true,
-          secure: true
+          secure: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
         }
       }
     }
