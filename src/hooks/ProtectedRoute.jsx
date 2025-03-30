@@ -6,6 +6,7 @@ import {Navigate, Outlet, useNavigate} from "react-router-dom"
 import Navbar from "../Components/Navbar"
 import { useSelector } from "react-redux";
 import { selectorSearch } from "../../app/features/searchSlice";
+import API_BASE_URL from '../config'
 
 
 export default function ProtectedRoute() {
@@ -32,7 +33,7 @@ export default function ProtectedRoute() {
         }
         try{
             const res = await axios.post(
-                'http://localhost:8000/api/token/refresh/',
+                `${API_BASE_URL}/api/token/refresh/`,
                 {
                     refresh: refreshToken,
                 }

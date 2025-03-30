@@ -7,6 +7,7 @@ import Answer from "../Components/Answer"
 import { MdArrowBackIos } from "react-icons/md";   
 import Loader from '../Components/Loader'
 import image from "../asset/images.png";
+import API_BASE_URL from "../config"
 
 const Search = () => {
 
@@ -18,7 +19,7 @@ const Search = () => {
 
     const getSearch = async () => {
            const res = await axios.get(
-      `/api/search/?q=${params.param}`,
+      `${API_BASE_URL}/api/search/?q=${params.param}`,
       {
         headers: {
           Authorization: `Bearer ${Cookies.get('accessToken')}`
@@ -33,6 +34,7 @@ const Search = () => {
     useEffect(() => {
         getSearch()
     }, [params])
+    
     return (
         <div className="p-4">
             <button className="outline-none text-xl"

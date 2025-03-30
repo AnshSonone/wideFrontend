@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useSelector } from 'react-redux';
 import { selectorUser } from '../../app/features/userSlice';
 import Loader from '../Components/Loader';
+import API_BASE_URL from '../config';
 
 export default function Home() {
 
@@ -22,7 +23,7 @@ export default function Home() {
       const handlePost = async () => {
         try {
           let res = await axios.get(
-            `/api/videos?page=${page}`,
+            `${API_BASE_URL}/api/videos?page=${page}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`
@@ -74,7 +75,6 @@ export default function Home() {
                             videoDescription={items.videoDescription}
                             videoUrl={items?.videoUrl}
                             tag={items.tag}
-                            // userId={items.user.id}
                             created={items.created}
                           />
                         )

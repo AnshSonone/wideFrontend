@@ -9,6 +9,7 @@ import { MdArrowBackIos } from "react-icons/md";
 import { RiReservedFill } from "react-icons/ri";
 import Post from "../Components/Post";
 import Loader from "../Components/Loader";
+import API_BASE_URL from "../config";
 
 export default function Profile() {
 
@@ -21,7 +22,7 @@ export default function Profile() {
         try {
 
             const token = Cookies.get('accessToken')
-            const res = await axios.get(`/api/question/${user.data?.id}`,
+            const res = await axios.get(`${API_BASE_URL}/api/question/${user.data?.id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

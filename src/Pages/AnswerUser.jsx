@@ -8,6 +8,7 @@ import { selectorUser } from '../../app/features/userSlice';
 import { MdArrowBackIos } from 'react-icons/md';
 import Post from '../Components/Post';
 import Loader from '../Components/Loader';
+import API_BASE_URL from '../config'
 
 
 // Fetch user data server-side and render it
@@ -23,7 +24,7 @@ export default function AnswerUser() {
 
     const fetchAnsweredUserData = async () => {
         try {
-            const res = await axios.get(`/api/users/profile/${params.id}/`,
+            const res = await axios.get(`${API_BASE_URL}/api/users/profile/${params.id}/`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -40,7 +41,7 @@ export default function AnswerUser() {
 
     const fetchVideoData = async () => {
         try {
-            const res = await axios.get(`/api/question/${params.id}/`,
+            const res = await axios.get(`${API_BASE_URL}/api/question/${params.id}/`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

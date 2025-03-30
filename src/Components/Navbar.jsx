@@ -16,14 +16,6 @@ const Navbar = ({ findSearch }) => {
     const [search, setSearch] = useState('')
 
     const handleLogout = async () => {
-
-        // const res = await axios.post(`http://localhost:8000/api/users/logout/`,
-        //     {
-        //         headers: {
-        //             Authorization: `Bearer ${token}`
-        //         }
-        //     }
-        // )
         Cookies.remove('accessToken')
         localStorage.clear()
         Cookies.remove('csrftoken')

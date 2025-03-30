@@ -2,6 +2,7 @@ import {useState} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Loader from '../Components/Loader'
+import API_BASE_URL from '../config'
 
 const register = () => {
 
@@ -42,10 +43,10 @@ const register = () => {
             formData.append('email', email)
             formData.append('password', password)
             formData.append('bio', bio)
-            // formData.append('avatar', avatar)
+            formData.append('avatar', avatar)
     
             let res = await axios.post(
-                '/api/users/register/',
+                `${API_BASE_URL}/api/users/register/`,
                 formData
             )
     

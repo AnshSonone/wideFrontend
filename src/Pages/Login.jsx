@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux"
 import {LoginStatus} from '../../app/features/userSlice'
 import Loader from '../Components/Loader'
 import { jwtDecode } from "jwt-decode"
-import { Navigate } from "react-router-dom"
+import API_BASE_URL from '../config'
 
 const Login = () => {
 
@@ -49,7 +49,7 @@ const Login = () => {
             formData.append('password', password);
 
             const res = await axios.post(
-                '/api/users/login/',
+                `${API_BASE_URL}/api/users/login/`,
                 formData,
                 {
                     headers: {

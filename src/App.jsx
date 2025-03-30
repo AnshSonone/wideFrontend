@@ -15,6 +15,9 @@ import Register from "./Pages/Register"
 import Activate from './Pages/Activate'
 import ForgotPassword from './Pages/ForgotPassword'
 import ResetPasword from './Pages/ResetPasword'
+import API_BASE_URL from './config'
+
+
 
 
 function App() {
@@ -25,7 +28,7 @@ function App() {
     const getProfile = async () => {
       try {
         const token = Cookies.get('accessToken')
-        const res = await axios.get('http://localhost:8000/api/users/profile/',
+        const res = await axios.get(`${API_BASE_URL}/api/users/profile/`,
           {
             headers: {
               Authorization: `Bearer ${token}`

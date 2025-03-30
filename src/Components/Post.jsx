@@ -14,7 +14,6 @@ export default function Post({ id, username, avatar, created, videoDescription, 
   const time = new Date(created)
   const navigate = useNavigate()
   const token = Cookies.get('accessToken')
-  // const user = useSelector(selectorSearch)
   const postId = id
   const user = jwtDecode(token)
 

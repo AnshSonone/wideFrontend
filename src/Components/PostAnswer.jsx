@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { FaTelegramPlane } from "react-icons/fa";
 import Loader from '../Components/Loader'
+import API_BASE_URL from '../config'
 
 const PostAnswer = ({id}) => {
 
@@ -27,7 +28,7 @@ const PostAnswer = ({id}) => {
             formData.append('comment', comment)
     
             let res = await axios.post(
-              "/api/answer/",
+              `${API_BASE_URL}/api/answer/`,
                 formData,
                 {
                   headers: {

@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, {useState} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Loader from '../Components/Loader'
+import API_BASE_URL from '../config'
 
 function Activate() {
 
@@ -13,7 +14,7 @@ function Activate() {
     try {
       setLoading(true)
       let res = await axios.patch(
-        '/api/users/activate/',
+        `${API_BASE_URL}/api/users/activate/`,
         {
           "uid": uid,
           'token': token

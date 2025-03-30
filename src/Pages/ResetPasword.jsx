@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {useState} from 'react'
 import Loader from '../Components/Loader'
+import API_BASE_URL from '../config'
 
 function ResetPasword() {
 
@@ -15,7 +16,7 @@ function ResetPasword() {
       if (newPassword != confPassword ) return
       setLoading(true)
       let res = await axios.get(
-        '/api/users/reset/',
+        `${API_BASE_URL}/api/users/reset/`,
         {
           'newPassword': newPassword,
           'confPassword': confPassword

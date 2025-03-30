@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import { useNavigate, Link } from 'react-router-dom';
 import Loader from '../Components/Loader';
 import image from "../asset/images.png";
+import API_BASE_URL from '../config'
 
 const Inputbox = ({ avatar, username }) => {
 
@@ -35,7 +36,7 @@ const Inputbox = ({ avatar, username }) => {
   
       if (!(fromData.has('videoDescription') && fromData.has('videoUrl'))) return
   
-      let res = await axios.post('/api/videos/',
+      let res = await axios.post(`${API_BASE_URL}/api/videos/`,
         fromData,
         {
           headers: {

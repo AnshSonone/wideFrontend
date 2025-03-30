@@ -8,8 +8,8 @@ import UserInfo from '../Components/Userinfo';
 import Post from '../Components/Post';
 import Answer from '../Components/Answer';
 import PostAnswer from '../Components/PostAnswer';
+import API_BASE_URL from '../config';
 
-// Fetch user data server-side and render it
 export default function User() {
 
   const navigate = useNavigate()
@@ -23,7 +23,7 @@ export default function User() {
   const fetchAnswer = async () => {
     try {
       const token = Cookies.get('accessToken')
-      const res = await axios.get(`/api/answer/?q=${params.id}`, {
+      const res = await axios.get(`${API_BASE_URL}/api/answer/?q=${params.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +40,7 @@ export default function User() {
     const fetchUserData = async () => {
       try {
         const token = Cookies.get('accessToken') 
-        const res = await axios.get(`/api/video/?video=${params.id}`, {
+        const res = await axios.get(`${API_BASE_URL}/api/video/?video=${params.id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

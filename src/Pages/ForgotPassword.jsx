@@ -1,5 +1,7 @@
 import axios from "axios"
 import React, {useState} from "react"
+import API_BASE_URL from '../config' 
+import Loader from '../Components/Loader'
 
 function ForgotPassword(){
 
@@ -13,7 +15,7 @@ function ForgotPassword(){
         try{
             setLoading(true)
             let res = await axios.post(
-                '/api/users/forgot/',
+                `${API_BASE_URL}/api/users/forgot/`,
                 {
                     'email': email,
                 },
@@ -47,7 +49,7 @@ function ForgotPassword(){
                     />
                 </div>
                 <div className="my-6 ">
-                <button className="bg-gray-300 py-2 px-4 font-bold hover:scale-105 transform transition duration-100 hover:bg-gray-400">Reset</button>
+                <button onClick={handleForotPasword} className="bg-gray-300 py-2 px-4 font-bold hover:scale-105 transform transition duration-100 hover:bg-gray-400">{loading ? <Loader /> : 'Reset'}</button>
                 </div>
                 {
                     emailSendStatus && <div>
