@@ -37,9 +37,9 @@ function App() {
 
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
-        <Route path='api/users/activate/:uid/:token' element={<Activate />} />
+        <Route path='api/users/activate/:uid/:token/' element={<Activate />} />
         <Route path='/forgot' element={<ForgotPassword />} />
-        <Route path='/api/users/reset/:uid/:token' element={<ResetPasword />}/>
+        <Route path='/api/users/reset/:uid/:token/' element={<ResetPasword />}/>
       </Routes>
     </Router>
   )
