@@ -1,10 +1,11 @@
 import axios from "axios";
+import API_BASE_URL from "../config";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { jwtDecode } from "jwt-decode";
 
-const Answer = ({ id, username, avatar, comment, commentDate, userId }) => {
+const Answer = ({ id, username, avatar, comment, commentDate, userId, fetchAnswer }) => {
   const time = new Date(commentDate);
   const navigate = useNavigate();
   const token = Cookies.get("accessToken");
@@ -17,20 +18,21 @@ const Answer = ({ id, username, avatar, comment, commentDate, userId }) => {
   };
 
   const deleteAnswer = async () => {
-    console.log('clicked')
     const res = await axios.delete(
-      `/api/answer/${answerId}`,
+      `${API_BASE_URL}/api/answer/${answerId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
     );
+
+    fetchAnswer()
   };
 
   return (
     <div
-      className="my-2 bg-gray-200 py-2 px-2 rounded-md shadow-xl"
+      className="my-4 bg-gray-200 py-2 px-2 rounded-md shadow-xl"
     >
       <div className="flex items-center" onClick={dynamicRoute}>
         <img

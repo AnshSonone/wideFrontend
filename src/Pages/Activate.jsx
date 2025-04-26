@@ -14,11 +14,7 @@ function Activate() {
     try {
       setLoading(true)
       let res = await axios.patch(
-        `${API_BASE_URL}/api/users/activate/`,
-        {
-          "uid": uid,
-          'token': token
-        }
+        `${API_BASE_URL}/api/users/activate/${uid}/${token}/`,
       )
   
       if(res.status === 201){

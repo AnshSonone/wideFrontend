@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Loader = ({size, wSize}) => {
   return (
-    <StyledWrapper>
+    <StyledWrapper className='my-2'>
       <div className="loading" style={{'height': size, width: wSize}}>
         <span />
         <span />

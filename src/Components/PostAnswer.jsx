@@ -6,7 +6,7 @@ import { FaTelegramPlane } from "react-icons/fa";
 import Loader from '../Components/Loader'
 import API_BASE_URL from '../config'
 
-const PostAnswer = ({id}) => {
+const PostAnswer = ({id, fetchAnswer}) => {
 
     const [comment, setComment] = useState('')
     const [ loading, setLoading ] = useState(false)
@@ -38,6 +38,7 @@ const PostAnswer = ({id}) => {
               )
 
               setComment('')
+              fetchAnswer()
               setLoading(false)
         } catch (error) {
             console.log(error)

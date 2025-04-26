@@ -64,14 +64,14 @@ export default function AnswerUser() {
 
     return (
         <>
-            <button className="outline-none text-xl m-4"
+            <button className="outline-none text-xl m-2 cursor-pointer"
                 onClick={() => navigate('/')}>
                 <MdArrowBackIos />
             </button>
             {
                 loading ? <Loader /> :
                     <div>
-                        <div>
+                        <div className='flex justify-center'>
                             <UserInfo
                                 username={profile?.username}
                                 email={profile?.email}
@@ -82,10 +82,10 @@ export default function AnswerUser() {
                         <div className='flex flex-col items-center'>
                         <div className='my-2 mx-4'>
                             <span className='text-xl font-semibold'>
-                                Question{video?.length > 1 ? "'s" : ''} posted by you {!video ? '0' : video.length}
+                                Question{video?.length > 1 ? "'s" : ''} posted {!video ? '0' : video.length}
                             </span>
                         </div>
-                        <div>
+                        <div className='w-full lg:w-[95%]'>
                             {
                                 video.map((items) => (
                                     <Post

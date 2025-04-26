@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Cookies from "js-cookie"
 import { useNavigate, Link} from "react-router-dom"
-import { useDispatch } from "react-redux"
 import {LoginStatus} from '../../app/features/userSlice'
 import Loader from '../Components/Loader'
 import { jwtDecode } from "jwt-decode"
@@ -11,13 +10,12 @@ import API_BASE_URL from '../config'
 const Login = () => {
 
     const navigate = useNavigate()
-    const dispatch = useDispatch()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
-    const [getError, setGetError] = useState(false)
+    const [getError, setGetError] = useState('')
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -58,11 +56,6 @@ const Login = () => {
                     }
                 }
             );
-            
-            if(res.data.error ){
-                setGetError('Email or Password are invalid')
-                return
-            }
 
             // access Token
             const token = Cookies.set('accessToken', res.data?.token.access)
@@ -78,8 +71,9 @@ const Login = () => {
 
 
         } catch (error) {
-            console.error('Login error:', error.message);
-            setGetError(true)
+            console.error('Login error:', error.response);
+            if (error.response.status === 404) setGetError('Email does not exist')
+            setGetError(error.response.data.message)
             setLoading(false)
 
         }
@@ -101,18 +95,31 @@ const Login = () => {
         }
     }
 
+    useEffect(() => {
+        if (email.trim() !== ''){
+            setEmailError("")
+        } else {
+            setEmailError('Email is required')
+        }
+
+        if (password.trim() !== ''){
+            setPasswordError("")
+        } else {
+            setPasswordError('Password is required')
+        }
+    }, [email, password])
 
 
     return <section className="bg-gray-50 dark:bg-gray-100 h-screen place-content-center">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <Link href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-black">
-                {/* Set wed ap  logo
-                 <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" /> */}
+            <h2 className="flex items-center mb-6 text-2xl border-[1px] border-black p-1 rounded-md font-semibold text-gray-900 dark:text-black">
                 Wide
-            </Link>
+            </h2>
             <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-200 dark:border-gray-700" >
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <span className={`${getError ? 'inline' : 'hidden'} text-red-500 relative left-[6rem]`}>{getError}</span>
+                    <div className="flex justify-center">
+            <span className="text-red-500 font-bold text-lg">{getError}</span>
+                    </div>
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                         Sign in to your account
                     </h1>
@@ -143,7 +150,7 @@ const Login = () => {
                             </div>
                             <Link to={{pathname: '/forgot'}} className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</Link>
                         </div>
-                        <button onClick={sendForm} className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-primary-800 flex justify-center" >{ loading ? <Loader size={10}/> : 'Sign in'}</button>
+                        <button onClick={sendForm} className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-primary-800 flex justify-center" >{ loading ? <Loader size={"1px"}/> : 'Sign in'}</button>
                         <p className="text-sm font-light text-gray-600 dark:text-gray-600">
                             Don’t have an account yet? <Link to={{pathname: '/register'}} className="font-medium text-primary-600 hover:underline dark:text-black">Sign up</Link>
                         </p>

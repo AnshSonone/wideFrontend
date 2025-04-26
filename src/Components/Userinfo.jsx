@@ -1,14 +1,13 @@
 import React from "react";
-import image from "../asset/images.png"
 
 const UserInfo = ({ username, avatar, bio }) => {
   return (
-    <div className="bg-gray-100 py-5 px-5 w-[100%] flex space-x-2 mx-4 my-2 shadow-md">
+    <div className="bg-gray-100 py-5 px-5 flex items-center w-full  space-x-2 my-4 shadow-md">
       <div className="flex flex-col justify-center items-center ">
         <div className="">
           <img
             className="rounded-full"
-            src={avatar == null ? avatar : image}
+            src={avatar}
             width={60}
             height={60}
             alt="icon"
@@ -19,7 +18,7 @@ const UserInfo = ({ username, avatar, bio }) => {
         </div>
       </div>
       <div>
-        <p className="text-xl">{bio}</p>
+        <p className="">{bio}</p>
       </div>
     </div>
   );

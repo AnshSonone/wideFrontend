@@ -55,18 +55,18 @@ export default function User() {
     }
 
     fetchUserData()
-  }, [answer])
+  }, [])
 
   return (
     <>
-      <button className="outline-none text-xl m-4"
+      <button className="outline-none text-xl m-2 cursor-pointer"
         onClick={() => navigate(-1)}>
         <MdArrowBackIos />
       </button>
       {
 
-        loading ? <Loader /> : 
-          <div className='flex flex-col my-4 mx-3 '>
+        loading ?<div  className='my-2 flex justify-center'><Loader /></div> : 
+          <div className='flex flex-col lg:mx-9 justify-center '>
             {
               data.length == 0 ?
               <div className='text-center my-4'>
@@ -75,13 +75,13 @@ export default function User() {
               :
               data.map((items) => {
                 return (
-                  <div key={items.id}>
+                  <div key={items.id} >
                     <UserInfo
                       username={items.user.username}
                       avatar={items.user.avatar}
                       bio={items.user.bio}
                     />
-                    <div>
+                    <div >  
                       <Post
                         key={items.id}
                         id={params.id}
@@ -93,7 +93,7 @@ export default function User() {
                         userId={items.user.id}
                         created={items.created}
                       />
-                      <PostAnswer id={params.id}/>
+                      <PostAnswer id={params.id} fetchAnswer={fetchAnswer}/>
                     </div>
                   </div>
                 )
@@ -116,6 +116,7 @@ export default function User() {
                     commentDate={items.commentDate}
                     username={items.user.username}
                     avatar={items.user.avatar}
+                    fetchAnswer={fetchAnswer}
                   />
                 )
               })

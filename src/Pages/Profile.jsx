@@ -6,7 +6,6 @@ import UserInfo from "../Components/Userinfo";
 import { useSelector } from "react-redux";
 import { selectorUser } from "../../app/features/userSlice";
 import { MdArrowBackIos } from "react-icons/md";
-import { RiReservedFill } from "react-icons/ri";
 import Post from "../Components/Post";
 import Loader from "../Components/Loader";
 import API_BASE_URL from "../config";
@@ -43,17 +42,16 @@ export default function Profile() {
 
 
 
-
     return (
         <>
-            <button className="outline-none text-xl m-4 cursor-pointer"
+            <button className="outline-none text-xl m-2 flex justify-center cursor-pointer"
                 onClick={() => navigate(-1)}>
                 <MdArrowBackIos />
             </button>
             {
-                loading ? <div className="flex justify-center"><Loader /></div> :
+                loading ? <div className="flex justify-center "><Loader /></div> :
                     <div>
-                        <div>
+                        <div className="flex justify-center mx-9">
                             <UserInfo
                                 username={user?.data.username}
                                 email={user?.data.email}
@@ -67,7 +65,7 @@ export default function Profile() {
                                 Question{video?.length > 1 ? "'s" : ''} posted by you {!video ? '0' : video.length}
                             </span>
                         </div>
-                        <div>
+                        <div className="md:w-full lg:w-[95%]">
                             {
                                 video.map((items) => (
                                     <Post

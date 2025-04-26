@@ -57,10 +57,11 @@ export default function ProtectedRoute() {
 
     const auth =  async () => {
         const token = Cookies.get('accessToken')
+        const refreshToken = localStorage.getItem('refreshToken')
 
         if (token) {
             setIsAuthenticated(true)
-            return <Navigate to={'/login'}/>;
+            return <Navigate to={'/'}/>;
         }
 
         const decoded = jwtDecode(token)
@@ -68,7 +69,7 @@ export default function ProtectedRoute() {
         const now = Date.now()
 
         if (tokenExpiration < now){
-            await refreshToken();
+            refreshToken();
         }else {
             setIsAuthenticated(true)
         }
@@ -76,7 +77,7 @@ export default function ProtectedRoute() {
 
     const findSearch = async (e) => {
         e.preventDefault()
-    
+        if (!search) return
         navigate(`Search/${search}`)
     
     

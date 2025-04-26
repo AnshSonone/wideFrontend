@@ -6,8 +6,6 @@ import API_BASE_URL from '../config'
 
 const register = () => {
 
-    const navigate = useNavigate()
-
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -15,6 +13,7 @@ const register = () => {
     const [avatar, setAvatar] = useState(null)
     const [loading, setLoading] = useState(false)
     const [isEamailSend, setISEmailend] = useState(false)
+    const [getError, setGetError] = useState('')
 
     const handlePic = (e) => {
         if (e.target.file && e.target.file[0]) setAvatar(e.target.file[0])
@@ -24,43 +23,47 @@ const register = () => {
         setLoading(true)
         try {
             e.preventDefault()
-            const formData = new FormData()
             
             if ( username.trim() === ""){
                 document.getElementById('usernameError').innerText = 'Username field is required'
+                setLoading(false)
+                return
             }
     
             if ( email.trim() === ""){
                 document.getElementById('emailError').innerText = 'Email field is required'
+                setLoading(false)
+                return
             }
     
             if ( password.trim() === ""){
                 document.getElementById('passwordError').innerText = 'password field is required'
+                setLoading(false)
+                return
             }
-          
-    
-            formData.append('username', username)
-            formData.append('email', email)
-            formData.append('password', password)
-            formData.append('bio', bio)
-            formData.append('avatar', avatar)
     
             let res = await axios.post(
                 `${API_BASE_URL}/api/users/register/`,
-                formData
+                {
+                    'username': username,
+                    "email": email,
+                    "password": password,
+                    'bio': bio,
+                    "avatar": avatar,
+                }
             )
-    
-            
-            if ( res.status != 201 ){
-                throw new Error(`response error ${res.status}`)
-            }
 
-            // navigate('/Login')
             setISEmailend(true)
             setLoading(false)
+            setUsername('')
+            setEmail('')
+            setPassword('')
+            setBio('')
+            setAvatar(null)
             
             
         } catch (error) {
+            setGetError(error.response.data.email)
             console.log(error)
             setLoading(false)
         } 
@@ -69,16 +72,16 @@ const register = () => {
     return <section className="bg-gray-50  h-screen ">
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
-         {/* <img className="mr-2" src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"} width={10} height={10} alt="logo"/> */}
          <span>
              Wide    
          </span>
         </div>
         <div className="w-full bg-gray-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  dark:border-gray-700">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <div className="p-6 space-y-2 md:space-y-6 sm:p-8">
                 {
                     isEamailSend && <span className="text-green-500">we have Send activation link on your email</span>
                 }
+                <span className="text-red-500 flex justify-center font-bold">{getError}</span>
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl  mb-2">
                     Sign up to your account
                 </h1>
@@ -106,7 +109,6 @@ const register = () => {
                     <div className="">
                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Avatar</label>
                         <input className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onClick={handlePic} type="file" name="avatar" id="avatar"  />
-                        <span className="text-sm text-red-500" id="bioError"></span>
                     </div>
 
                     <div className="flex items-center justify-between">
@@ -120,7 +122,7 @@ const register = () => {
                         </div>
 
                     </div>
-                    <button className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-primary-800 flex justify-center" onClick={sendForm}>{loading ? <Loader /> : 'Sign in'}</button>                
+                    <button className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-primary-800 flex justify-center" onClick={sendForm}>{loading ? <Loader wSize={"50px"} size={"1px"} /> : 'Sign up'}</button>                
                     </form>
 
                     <div>

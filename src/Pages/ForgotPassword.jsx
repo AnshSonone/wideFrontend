@@ -11,7 +11,8 @@ function ForgotPassword(){
     const [err, setErr] = useState(false)
 
     const handleForotPasword = async () => {
-        if (!email) return;
+        if (email.trim() === '') return;
+        setEmailSendStatus(false)
         try{
             setLoading(true)
             let res = await axios.post(
@@ -36,7 +37,7 @@ function ForgotPassword(){
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <div className="md:w-1/4 mx-4 h-[17rem] p-4 bg-gray-100 place-items-center rounded-md relative top-[10rem] border-1 border-black">
+            <div className="md:w-1/4 mx-4  p-4 bg-gray-100 place-items-center rounded-md relative top-[10rem] border-1 border-black">
                 <h1 className="text-2xl sm:text-3xl font-bold my-4">Forgot Password</h1>
                 <div className="mt-8">
                     <input 
@@ -49,11 +50,11 @@ function ForgotPassword(){
                     />
                 </div>
                 <div className="my-6 ">
-                <button onClick={handleForotPasword} className="bg-gray-300 py-2 px-4 font-bold hover:scale-105 transform transition duration-100 hover:bg-gray-400">{loading ? <Loader /> : 'Reset'}</button>
+                <button onClick={handleForotPasword} className="bg-gray-300 py-2 px-4 font-bold hover:scale-105 transform transition duration-100 hover:bg-gray-400">{loading ? <Loader size={"2px"} wSize={"50px"}/> : 'Reset'}</button>
                 </div>
                 {
-                    emailSendStatus && <div>
-                    <span className="text-green-500 my-4">we send reset password link on {email}</span>
+                    emailSendStatus && <div className="flex justify-center text-center">
+                    <span className="text-green-500 my-4 font-bold">we send reset password link on {email}</span>
                 </div>
                 }
                 </div>

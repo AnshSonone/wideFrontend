@@ -22,30 +22,6 @@ import API_BASE_URL from './config'
 
 function App() {
 
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    const getProfile = async () => {
-      try {
-        const token = Cookies.get('accessToken')
-        const res = await axios.get(`${API_BASE_URL}/api/users/profile/`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        )
-  
-        dispatch(LoginStatus(res.data))
-        // setProfile(res.data)
-      } catch (error) {
-        console.log(error)
-      }
-     }
-
-     getProfile()
-  }, [])
-
   return (
     <Router>
       <Routes>
