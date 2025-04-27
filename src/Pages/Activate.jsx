@@ -9,6 +9,7 @@ function Activate() {
   const {uid, token} = useParams()
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
+  const [isError, setIsError] = useState('')
 
   const handleActivate = async () => {
     try {
@@ -23,6 +24,7 @@ function Activate() {
       }
     } catch (error) {
       console.log(error)
+      setIsError(error.response.data.message)
       setLoading(false)
     }
   }
@@ -31,8 +33,9 @@ function Activate() {
     <div className='flex justify-center flex-col items-center h-screen mx-4'>
       <h1 className='font-bold sm:text-xl md:text-3xl'>To get started activate your account </h1>
       <div className='flex justify-center my-4'>
-      <button className='bg-gray-600 hover:bg-gray-700 sm:text-xl text-white font-bold p-2 shadow-md rounded-md hover:scale-105 transform transition duration-100' onClick={handleActivate}>{loading ? <Loader size={30}/> : 'Activate'}</button>
+      <button className='bg-gray-600 hover:bg-gray-700 sm:text-xl text-white font-bold p-2 shadow-md rounded-md hover:scale-105 transform transition duration-100' onClick={handleActivate}>{loading ? <Loader size={'10px'}/> : 'Activate'}</button>
       </div>
+      <span className='text-red-500 font-bold'>{isError}</span>
     </div>
   )
 }

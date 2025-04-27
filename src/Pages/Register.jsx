@@ -1,5 +1,5 @@
-import {useState} from "react";
-import { useNavigate, Link } from "react-router-dom";
+import {useEffect, useRef, useState} from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Loader from '../Components/Loader'
 import API_BASE_URL from '../config'
@@ -14,9 +14,25 @@ const register = () => {
     const [loading, setLoading] = useState(false)
     const [isEamailSend, setISEmailend] = useState(false)
     const [getError, setGetError] = useState('')
+    const fileRef = useRef(null)
 
     const handlePic = (e) => {
-        if (e.target.file && e.target.file[0]) setAvatar(e.target.file[0])
+        const file = e.target.flies?.[0]
+
+        if (!file) return;
+
+        const reader = new FileReader()
+
+        reader.onload = (readerEvent) => {
+            const result = readerEvent?.target?.result
+            console.log(readerEvent)
+            if (result) {
+                setAvatar(result)
+                e.target.value = ''
+            }
+            }
+        
+        reader.readAsDataURL(file)
     }
 
     const sendForm = async (e) => {
@@ -106,9 +122,9 @@ const register = () => {
                         <input type="text" name="bio" id="bio" placeholder="Hey wide" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" value={bio} onChange={(e) => setBio(e.target.value)}/>
                     </div>
 
-                    <div className="">
-                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Avatar</label>
-                        <input className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onClick={handlePic} type="file" name="avatar" id="avatar"  />
+                    <label htmlFor="avatar" className="block mb-2 text-sm font-medium text-gray-900 ">Avatar</label>
+                    <div className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onClick={() => fileRef.current.click()}>
+                        <input onClick={handlePic} type="file" name="avatar" id="avatar" ref={fileRef} onChange={avatar} />
                     </div>
 
                     <div className="flex items-center justify-between">
