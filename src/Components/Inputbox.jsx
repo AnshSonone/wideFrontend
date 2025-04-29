@@ -138,7 +138,7 @@ const Inputbox = ({ avatar, username, handlePost }) => {
         <Link href={"/Profile"}>
           <img
             className="rounded-full cursor-pointer"
-            src={avatar}
+            src={`https://res.cloudinary.com/da25rozpm/${avatar}.png`}
             width={60}
             height={60}
             alt="profile"

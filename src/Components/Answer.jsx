@@ -34,10 +34,10 @@ const Answer = ({ id, username, avatar, comment, commentDate, userId, fetchAnswe
     <div
       className="my-4 bg-gray-200 py-2 px-2 rounded-md shadow-xl"
     >
-      <div className="flex items-center" onClick={dynamicRoute}>
+      <div className="flex items-center cursor-pointer w-fit" onClick={dynamicRoute}>
         <img
           className="border-black shadow-sm border-2 rounded-full"
-          src={avatar}
+          src={`https://res.cloudinary.com/da25rozpm/${avatar}.png`}
           width={45}
           height={45}
           alt="avatar"

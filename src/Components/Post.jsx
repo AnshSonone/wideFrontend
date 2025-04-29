@@ -38,14 +38,14 @@ export default function Post({ id, username, avatar, created, videoDescription, 
   return (
     <div className=" bg-gray-200 py-2 px-2 rounded-md shadow-xl my-4 space-y-2 animate-fade
 " >
-      <div >
-      <div className="flex items-center justify-between pt-[2px] cursor-pointer pr-3" onClick={dynamicRoute}>
+      <div onClick={dynamicRoute}>
+      <div className="flex items-center justify-between pt-[2px] cursor-pointer pr-3" >
         <div className="flex items-center pl-1 ">
           <img
             className="rounded-full shadow-md border-black border-2"
             width={40}
             height={40}
-            src={avatar}
+            src={`https://res.cloudinary.com/da25rozpm/${avatar}.png`}
             alt="avatar"
             loading="lazy"
           />

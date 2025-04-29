@@ -7,7 +7,7 @@ const UserInfo = ({ username, avatar, bio }) => {
         <div className="">
           <img
             className="rounded-full"
-            src={avatar}
+            src={`https://res.cloudinary.com/da25rozpm/${avatar}.png`}
             width={60}
             height={60}
             alt="icon"
