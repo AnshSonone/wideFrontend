@@ -1,8 +1,4 @@
-import React, {useEffect} from 'react'
-import Cookies from 'js-cookie'
-import axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { LoginStatus } from '../app/features/userSlice'
+import React from 'react'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import ProtectedRoute from "./hooks/ProtectedRoute"
 import Home from './Pages/Home'
@@ -15,7 +11,6 @@ import Register from "./Pages/Register"
 import Activate from './Pages/Activate'
 import ForgotPassword from './Pages/ForgotPassword'
 import ResetPasword from './Pages/ResetPasword'
-import API_BASE_URL from './config'
 
 
 

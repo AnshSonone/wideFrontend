@@ -61,7 +61,7 @@ export default function Post({ id, username, avatar, created, videoDescription, 
         <p className="font-bold">#{tag}</p>
           </div>
       <div className="cursor-pointer">
-        <div className="my-3 mx-2 text-[16px] font-semibold">
+        <div className="my-3 mx-2 text-[14px] font-semibold">
           <p>{videoDescription}</p>
         </div>
         {/* <div className={`${videoUrl != null ? 'flex justify-center my-2' : 'hidden'}`}>

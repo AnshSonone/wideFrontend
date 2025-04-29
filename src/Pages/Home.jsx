@@ -73,9 +73,9 @@ export default function Home() {
       {
         loading ? <div className='flex justify-center'><Loader /></div> :
           <main>
-            
             <div>
-              <div className=" flex flex-col items-center overflow-x-hidden md:px-2 py-2">
+              <div className=" flex flex-col items-center overflow-x-hidden md:px-2 py-2 animate-fade
+">
 
                 <div className="my-2 w-[95%]">
                   <Inputbox
@@ -113,7 +113,7 @@ export default function Home() {
                 }
 
                 {
-                  post && <button className='border-[1px] border-black p-2' >{page}</button>
+                  post && <button className={`${post.is_last_page ? 'hidden' : 'block' } border-[1px] border-black p-2`} >{page}</button>
                 }
 
                 {

@@ -7,6 +7,7 @@ import Navbar from "../Components/Navbar"
 import { useSelector } from "react-redux";
 import { selectorSearch } from "../../app/features/searchSlice";
 import API_BASE_URL from '../config'
+import Footer from "../Components/Footer";
 
 
 export default function ProtectedRoute() {
@@ -92,6 +93,7 @@ export default function ProtectedRoute() {
   <div>
     <Navbar findSearch={findSearch}/>
     <Outlet />
+    <Footer />
   </div> 
   :
   <Navigate to={'/login'} />

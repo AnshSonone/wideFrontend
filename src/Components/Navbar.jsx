@@ -37,7 +37,7 @@ const Navbar = ({ findSearch }) => {
         <nav className="bg-white border-gray-200 dark:bg-gray-900 sticky top-0">
             <div className="flex flex-wrap lg:flex-nowrap items-center justify-between mx-4 max-w-screen-xl p-4">
                 <div className="lg:block flex justify-center w-full space-x-3 rtl:space-x-reverse lg:w-fit">
-                    {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" /> */}
+
                 <Link to={'/'}>
                     <span className="self-center md:text-2xl font-semibold whitespace-nowrap dark:text-white border-[1px] border-white p-1 rounded-md animate-flip-up">Wide</span>
                 </Link>
@@ -54,7 +54,7 @@ const Navbar = ({ findSearch }) => {
                 </form>
                 <div className="flex items-center justify-between lg:justify-end space-x-6 px-2 w-full lg:w-fit">
                     <div className="">
-                        <span className="text-white sm:font-bold flex">Hey, <strong className="ml-1">{user.data?.username}</strong></span>
+                        <span className="text-white sm:font-bold flex items-center">Hey, <strong className="ml-1 text-[14px]">{user.data?.username}</strong></span>
                     </div>
                     <button onClick={handleLogout} className="sm:font-bold  text-blue-600 dark:text-blue-500 hover:underline cursor-pointer transition hover:scale-95 duration-150 ">Logout</button>
                 </div>
@@ -70,9 +70,9 @@ const Navbar = ({ findSearch }) => {
                         <li>
                             <Link to={'/Profile'} className="text-gray-900 dark:text-white hover:underline sm:font-bold sm:text-lg">Profile</Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link href="#" className="text-gray-900 dark:text-white hover:underline sm:font-bold sm:text-lg">Team</Link>
-                        </li>
+                        </li> */}
 
                     </ul>
                 </div>

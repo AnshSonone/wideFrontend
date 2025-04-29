@@ -32,7 +32,7 @@ const Answer = ({ id, username, avatar, comment, commentDate, userId, fetchAnswe
 
   return (
     <div
-      className="my-4 bg-gray-200 py-2 px-2 rounded-md shadow-xl"
+      className="my-4 bg-gray-200 py-3 px-2 rounded-md shadow-xl"
     >
       <div className="flex items-center cursor-pointer w-fit" onClick={dynamicRoute}>
         <img
@@ -43,13 +43,13 @@ const Answer = ({ id, username, avatar, comment, commentDate, userId, fetchAnswe
           alt="avatar"
         />
         <div className="mx-2">
-          <p className="text-xl font-semibold cursor-pointer hover:text-blue-500 hover:underline">
+          <p className="text-[14px] font-semibold cursor-pointer hover:text-blue-500 hover:underline">
             {username}
           </p>
-        </div>
+      <div className="">
+        <span className="text-[12px] text-gray-500 font-semibold">{time.toDateString()}</span>
       </div>
-      <div className="m-1">
-        <span>{time.toDateString()}</span>
+        </div>
       </div>
       <div className="my-2 mx-1 ">
         {isUpdatePenClicked && (
@@ -70,7 +70,7 @@ const Answer = ({ id, username, avatar, comment, commentDate, userId, fetchAnswe
             </button>
           </form>
         )}
-        <article className="font-semibold">{comment}</article>
+        <article className="font-semibold text-[14px]">{comment}</article>
       </div>
       {user?.user_id === userId && (
         <div className="space-x-2" onClick={deleteAnswer}>
