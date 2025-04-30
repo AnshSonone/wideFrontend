@@ -54,7 +54,7 @@ const Navbar = ({ findSearch }) => {
                 </form>
                 <div className="flex items-center justify-between lg:justify-end space-x-6 px-2 w-full lg:w-fit">
                     <div className="">
-                        <span className="text-white sm:font-bold flex items-center">Hey, <strong className="ml-1 text-[14px]">{user.data?.username}</strong></span>
+                        <span className="text-white sm:font-bold flex items-center">Hey, <strong className="ml-1 text-[14px]">{user.data?.username || JSON.parse(localStorage.getItem("user"))?.username}</strong></span>
                     </div>
                     <button onClick={handleLogout} className="sm:font-bold  text-blue-600 dark:text-blue-500 hover:underline cursor-pointer transition hover:scale-95 duration-150 ">Logout</button>
                 </div>

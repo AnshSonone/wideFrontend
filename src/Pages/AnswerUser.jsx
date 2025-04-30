@@ -69,9 +69,9 @@ export default function AnswerUser() {
                 <MdArrowBackIos />
             </button>
             {
-                loading ? <Loader /> :
+                loading ? <div className='flex justify-center'><Loader /></div> :
                     <div>
-                        <div className='flex justify-center'>
+                        <div className='lg:mx-9'>
                             <UserInfo
                                 username={profile?.username}
                                 email={profile?.email}
@@ -82,7 +82,7 @@ export default function AnswerUser() {
                         <div className='flex flex-col items-center'>
                         <div className='my-2 mx-4'>
                             <span className='text-xl font-semibold'>
-                                Question{video?.length > 1 ? "'s" : ''} posted {!video ? '0' : video.length}
+                                Question{video?.length > 1 ? "'s" : ''} posted by you {!video ? '0' : video.length}
                             </span>
                         </div>
                         <div className='w-full lg:w-[95%]'>
@@ -96,7 +96,6 @@ export default function AnswerUser() {
                                         videoDescription={items.videoDescription}
                                         videoUrl={items?.videoUrl}
                                         tag={items.tag}
-                                        // userId={items.user.id}
                                         created={items.created}
                                     />
                                 ))

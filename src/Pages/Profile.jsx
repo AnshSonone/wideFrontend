@@ -9,6 +9,7 @@ import { MdArrowBackIos } from "react-icons/md";
 import Post from "../Components/Post";
 import Loader from "../Components/Loader";
 import API_BASE_URL from "../config";
+import { jwtDecode } from "jwt-decode";
 
 export default function Profile() {
 
@@ -17,11 +18,13 @@ export default function Profile() {
     const [video, setVideo] = useState([])
     const [loading, setLoading] = useState(true)
 
+    const userData = JSON.parse(localStorage.getItem('user'))
+
     const fetchVideoData = async () => {
         try {
 
             const token = Cookies.get('accessToken')
-            const res = await axios.get(`${API_BASE_URL}/api/question/${user.data?.id}`,
+            const res = await axios.get(`${API_BASE_URL}/api/question/${user.data?.id || userData.id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -53,10 +56,10 @@ export default function Profile() {
                     <div>
                         <div className="lg:mx-9">
                             <UserInfo
-                                username={user?.data.username}
-                                email={user?.data.email}
-                                avatar={user?.data.avatar}
-                                bio={user?.data.bio}
+                                username={user?.data.username || userData.username}
+                                email={user?.data.email || userData.email}
+                                avatar={user?.data.avatar || userData.avatar}
+                                bio={user?.data.bio || userData.bio}
                             />
                         </div>
                         <div className="flex flex-col items-center">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Inputbox from '../Components/Inputbox'
 import Post from '../Components/Post'
 import Cookies from "js-cookie";
@@ -11,6 +11,11 @@ import API_BASE_URL from '../config';
 export default function Home() {
 
   const dispatch = useDispatch()
+  const [post, setPost] = useState([])
+  const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(true)
+  const [userData, setUserData] = useState(null)
+  const token = Cookies.get('accessToken')
 
   useEffect(() => {
     const getProfile = async () => {
@@ -25,6 +30,7 @@ export default function Home() {
         )
   
         dispatch(LoginStatus(res.data, {LoginStatus: true}))
+        localStorage.setItem("user", JSON.stringify(res.data))
         setUserData(res.data)
       } catch (error) {
         console.log(error)
@@ -33,14 +39,6 @@ export default function Home() {
 
      getProfile()
   }, [])
-
-  
-  
-  const [post, setPost] = useState([])
-  const [page, setPage] = useState(1)
-  const [loading, setLoading] = useState(true)
-  const [userData, setUserData] = useState(null)
-  const token = Cookies.get('accessToken')
   
   const handlePost = async () => {
     try {

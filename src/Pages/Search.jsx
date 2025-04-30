@@ -40,14 +40,14 @@ const Search = () => {
                 <MdArrowBackIos />
              </button>
              <div className="text-center my-2">
-                <span>Your search result for <strong>{params.param}</strong></span>
+                <span>{data.length >= 1 ? data.length : "0"} Result found for <strong>{params.param}</strong></span>
              </div>
            {loading ? <div className="flex justify-center"><Loader /></div>
            :
            data.map((items) => {
                return (
-                   <div className="flex flex-col justify-center items-center" key={items.id}>
-                    <div className="sm:w-[95vw]">
+                   <div className="flex flex-col justify-center md:items-center" key={items.id}>
+                    <div className="md:w-[95vw]">
                     <Post
                     id={items.id}
                     username={items?.user.username}
