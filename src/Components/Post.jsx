@@ -43,8 +43,8 @@ export default function Post({ id, username, avatar, created, videoDescription, 
         <div className="flex items-center pl-1 ">
           <img
             className="rounded-full shadow-md border-black border-2"
-            width={40}
-            height={40}
+            width={'50px'}
+            height={'50px'}
             src={`https://res.cloudinary.com/da25rozpm/${avatar}.png`}
             alt="avatar"
             loading="lazy"

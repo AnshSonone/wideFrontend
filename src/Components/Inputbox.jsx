@@ -139,8 +139,8 @@ const Inputbox = ({ avatar, username, handlePost }) => {
           <img
             className="rounded-full cursor-pointer"
             src={`https://res.cloudinary.com/da25rozpm/${avatar}.png`}
-            width={60}
-            height={60}
+            width={'60px'}
+            height={'60px'}
             alt="profile"
             loading="lazy"
           />
@@ -197,7 +197,7 @@ const Inputbox = ({ avatar, username, handlePost }) => {
           />
         </div> */}
           </div>
-          <div className="my-3 flex justify-center">
+          <div className="my-3 flex justify-center ">
         <select
           ref={hashRef}
           className="rounded-md border-black border-[1px] p-1"

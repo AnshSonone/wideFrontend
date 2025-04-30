@@ -38,7 +38,7 @@ export default function Profile() {
 
     useEffect(() => {
         fetchVideoData()
-    }, [user])
+    }, [])
 
 
 
@@ -51,7 +51,7 @@ export default function Profile() {
             {
                 loading ? <div className="flex justify-center "><Loader /></div> :
                     <div>
-                        <div className="flex justify-center mx-9">
+                        <div className="lg:mx-9">
                             <UserInfo
                                 username={user?.data.username}
                                 email={user?.data.email}
