@@ -105,10 +105,10 @@ const register = () => {
   };
 
   return (
-    <section className="bg-gray-50  h-screen ">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
-        <div className="flex items-center mb-6 text-2xl border-[1px] border-black p-1 rounded-md font-semibold text-gray-900 dark:text-black ">
-          <span>Wide</span>
+    <section className="bg-gray-50 ">
+      <div className="md:flex flex-col items-center justify-center px-6 py-8 sm:mx-auto h-screen lg:py-0">
+        <div className="flex justify-center mb-6  ">
+          <span className="text-2xl border-[1px] border-black p-1 rounded-md font-semibold text-gray-900 dark:text-black">Wide</span>
         </div>
         <div className=" bg-gray-100 rounded-lg shadow dark:border md:mt-0 md:max-w-3xl xl:p-0  dark:border-gray-700">
           <div className="p-6 space-y-2 md:space-y-6 sm:p-8">
@@ -120,7 +120,7 @@ const register = () => {
             <span className="text-red-500 flex justify-center font-bold">
               {getError}
             </span>
-            <h1 className="text-xl md:text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl  mb-2">
+            <h1 className="text-xl md:text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-2">
               Sign up to your account
             </h1>
             <form className="space-y-4" action="#">
@@ -228,6 +228,7 @@ const register = () => {
                 </label>
                 <div className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   <input
+                  className="text-[2.5vw] sm:text-sm"
                     onChange={(e) => setAvatar(e.target.files[0])}
                     type="file"
                     name="avatar"
