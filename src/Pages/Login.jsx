@@ -72,7 +72,11 @@ const Login = () => {
 
         } catch (error) {
             console.error('Login error:', error.response);
-            if (error.response.status === 404) setGetError('Email does not exist')
+            if (error.response.status === 404) {
+                setGetError('User does not exist')
+                setLoading(false)
+                return;
+            }
             setGetError(error.response.data.message)
             setLoading(false)
 
