@@ -14,13 +14,6 @@ const register = () => {
   const [isEamailSend, setISEmailend] = useState(false);
   const [getError, setGetError] = useState("");
 
-  const handlePic = (e) => {
-    const file = e.currentTarget.files[0];
-     if (!file) return;
-
-     setAvatar(file)
-  };
-
   const sendForm = async (e) => {
     setLoading(true);
     try {
@@ -31,6 +24,9 @@ const register = () => {
           "Username field is required";
         setLoading(false);
         return;
+      }else {
+        document.getElementById("usernameError").innerText =
+          "";
       }
 
       if (email.trim() === "") {
@@ -38,6 +34,9 @@ const register = () => {
           "Email field is required";
         setLoading(false);
         return;
+      }else {
+        document.getElementById("emailError").innerText =
+          "";
       }
 
       if (password.trim() === "") {
@@ -45,22 +44,36 @@ const register = () => {
           "password field is required";
         setLoading(false);
         return;
+      }else {
+        document.getElementById("passwordError").innerText =
+          "";
       }
 
-      let res = await axios.post(`${API_BASE_URL}/api/users/register/`, {
-        username: username,
-        email: email,
-        password: password,
-        bio: bio,
-        avatar: avatar,
-      },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data", // Set correct content type
+      if (!avatar) {
+        document.getElementById("avatarError").innerText =
+          "password field is required";
+        setLoading(false);
+        return;
+      }else {
+        document.getElementById("avatarError").innerText =
+          "";
+      }
+
+      let res = await axios.post(
+        `${API_BASE_URL}/api/users/register/`,
+        {
+          username: username,
+          email: email,
+          password: password,
+          bio: bio,
+          avatar: avatar,
         },
-      }
-
-    );
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Set correct content type
+          },
+        }
+      );
 
       setISEmailend(true);
       setLoading(false);
@@ -68,7 +81,7 @@ const register = () => {
       setEmail("");
       setPassword("");
       setBio("");
-      setAvatar(e.target.value = null);
+      setAvatar((e.target.value = null));
     } catch (error) {
       setGetError(error.response.data.email);
       console.log(error);
@@ -77,92 +90,116 @@ const register = () => {
   };
 
   const togglePassword = (e) => {
-    e.preventDefault()
-    const inputPassword = document.getElementById('password')
+    e.preventDefault();
+    const inputPassword = document.getElementById("password");
 
-    if (inputPassword.type === 'password') {
-        inputPassword.type = 'text'
-        document.getElementById('showPassword').innerText = 'Hide'
-        document.getElementById('password').focus()
+    if (inputPassword.type === "password") {
+      inputPassword.type = "text";
+      document.getElementById("showPassword").innerText = "Hide";
+      document.getElementById("password").focus();
     } else {
-        inputPassword.type = 'password'
-        document.getElementById('showPassword').innerText = 'Show'
-        document.getElementById('password').focus()
+      inputPassword.type = "password";
+      document.getElementById("showPassword").innerText = "Show";
+      document.getElementById("password").focus();
     }
-}
+  };
 
   return (
     <section className="bg-gray-50  h-screen ">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <div className="flex items-center mb-6 text-2xl font-semibold text-gray-900 ">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+        <div className="flex items-center mb-6 text-2xl border-[1px] border-black p-1 rounded-md font-semibold text-gray-900 dark:text-black ">
           <span>Wide</span>
         </div>
-        <div className="w-full bg-gray-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  dark:border-gray-700">
+        <div className=" bg-gray-100 rounded-lg shadow dark:border md:mt-0 md:max-w-3xl xl:p-0  dark:border-gray-700">
           <div className="p-6 space-y-2 md:space-y-6 sm:p-8">
             {isEamailSend && (
-              <span className="text-green-500">
+              <h3 className="m-0  p-0 text-green-500 text-center w-full transition-all">
                 we have Send activation link on your email
-              </span>
+              </h3>
             )}
             <span className="text-red-500 flex justify-center font-bold">
               {getError}
             </span>
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl  mb-2">
+            <h1 className="text-xl md:text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl  mb-2">
               Sign up to your account
             </h1>
-            <form className="space-y-4 md:space-y-4" action="#">
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 "
-                >
-                  username
-                </label>
-                <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="username"
-                  required=""
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                <span
-                  className="text-sm text-red-500"
-                  id="usernameError"
-                ></span>
+            <form className="space-y-4" action="#">
+              <div className="md:grid grid-cols-2 justify-items-center">
+              <div className="h-full w-[90%] space-y-2">
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    username
+                  </label>
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="username"
+                    required=""
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                  <span
+                    className="text-sm text-red-500"
+                    id="usernameError"
+                    
+                  ></span>
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="name@gmail.com"
+                    required=""
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <span className="text-sm text-red-500" id="emailError"></span>
+                </div>
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Password
+                  </label>
+                  <div className="bg-gray-50 borderborder-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <input
+                      className="w-[75%] sm:w-[85%] bg-gray-50 outline-none  h-8  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      type="password"
+                      id="password"
+                      placeholder="••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <span
+                      onClick={togglePassword}
+                      id="showPassword"
+                      className=" text-sm font-semibold text-white  dark:text-primary-500 cursor-pointer"
+                    >
+                      Show
+                    </span>
+                  </div>
+                  <span
+                    className="text-sm text-red-500"
+                    id="passwordError"
+                  ></span>
+                </div>
               </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 "
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="name@gmail.com"
-                  required=""
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <span className="text-sm text-red-500" id="emailError"></span>
-              </div>
-              <div>
-              <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-                            <div className="bg-gray-50 borderborder-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <input className="w-[75%] sm:w-[85%] bg-gray-50 outline-none  h-8  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type='password' id="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} />
-                                <span onClick={togglePassword} id='showPassword' className="ml-3 text-sm font-semibold text-white  dark:text-primary-500 cursor-pointer">Show</span>
-                            </div>
-                <span
-                  className="text-sm text-red-500"
-                  id="passwordError"
-                ></span>
-              </div>
+              
+              <div className="h-full w-[90%] space-y-2">
               <div>
                 <label
                   htmlFor="password"
@@ -170,34 +207,39 @@ const register = () => {
                 >
                   Bio
                 </label>
-                <input
+                <textarea
                   type="text"
                   name="bio"
                   id="bio"
                   placeholder="Hey wide"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 md:h-[20vh]"
                   required=""
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
-                />
+                ></textarea>
               </div>
 
-              <label
-                htmlFor="avatar"
-                className="block mb-2 text-sm font-medium text-gray-900 "
-              >
-                Avatar
-              </label>
-              <div className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <input
-                  onChange={(e) => setAvatar(e.target.files[0])}
-                  type="file"
-                  name="avatar"
-                  id="avatar"
-                />
+              <div>
+                <label
+                  htmlFor="avatar"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
+                >
+                  Avatar
+                </label>
+                <div className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <input
+                    onChange={(e) => setAvatar(e.target.files[0])}
+                    type="file"
+                    name="avatar"
+                    id="avatar"
+                  />
+                </div>
+                <span className="text-sm text-red-500" id="avatarError"></span>
+              </div>
+              </div>
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between md:ml-4">
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
                     <input

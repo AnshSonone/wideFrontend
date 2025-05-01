@@ -36,7 +36,7 @@ const Answer = ({ id, username, avatar, comment, commentDate, userId, fetchAnswe
     >
       <div className="flex items-center cursor-pointer w-fit" onClick={dynamicRoute}>
         <img
-          className="border-black shadow-sm border-2 rounded-full"
+          className="border-black shadow-sm rounded-full"
           src={`https://res.cloudinary.com/da25rozpm/${avatar}.png`}
           width={'50px'}
           height={'50px'}

@@ -135,7 +135,7 @@ const Inputbox = ({ avatar, username, handlePost }) => {
   return (
     <div className="bg-gray-200 py-3 px-3 rounded-md shadow-xl border-black border-1">
       <div className="flex  items-center ">
-        <Link href={"/Profile"}>
+        <Link to={"/Profile"}>
           <img
             className="rounded-full cursor-pointer"
             src={`https://res.cloudinary.com/da25rozpm/${avatar}.png`}
